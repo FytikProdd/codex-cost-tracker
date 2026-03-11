@@ -1,73 +1,75 @@
 # Codex Spend Popout
 
-Компактное WinUI 3 приложение для Windows, которое следит за локальными папками сессий Codex, сопоставляет чаты с тарифами OpenRouter и показывает примерную стоимость по каждому диалогу почти в реальном времени.
+[Русская версия](./README.ru.md)
 
-## Что делает приложение
+Compact WinUI 3 desktop app for Windows that watches local Codex session folders, matches conversations to OpenRouter pricing, and shows estimated spend per chat in near real time.
 
-- Отслеживает `~/.codex/sessions` и `~/.codex/archived_sessions`
-- Загружает цены из официального OpenRouter Models API
-- Считает ориентировочную стоимость по каждому чату и общую сумму на основе токенов
-- Автоматически обновляется при изменении файлов сессий
-- Позволяет вручную обновить чаты и цены прямо из интерфейса
+## What it does
 
-## Требования
+- Monitors `~/.codex/sessions` and `~/.codex/archived_sessions`
+- Pulls pricing data from the official OpenRouter Models API
+- Estimates per-conversation and total spend from token usage records
+- Refreshes automatically when session files change
+- Lets you manually refresh chats and prices from the UI
 
-- Windows 10 версии 1809 или новее
-- .NET 9 SDK для локальной сборки
-- Доступ в интернет для синхронизации тарифов OpenRouter
+## Requirements
 
-## Быстрый старт
+- Windows 10 version 1809 or newer
+- .NET 9 SDK for local builds
+- Internet access for OpenRouter pricing sync
 
-Запуск опубликованной версии:
+## Quick start
+
+Run the published app:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\Start-CodexSpendPopout.ps1
 ```
 
-Принудительно пересобрать и затем запустить:
+Force a fresh publish before launch:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\Start-CodexSpendPopout.ps1 -Build
 ```
 
-## Сборка из исходников
+## Build from source
 
-Сборка проекта:
+Build the project:
 
 ```powershell
 dotnet build .\CodexSpendMonitor\CodexSpendMonitor.csproj
 ```
 
-Публикация self-contained сборки:
+Publish a self-contained executable:
 
 ```powershell
 dotnet publish .\CodexSpendMonitor\CodexSpendMonitor.csproj -c Release -o .\dist\CodexSpendMonitor
 ```
 
-## Структура репозитория
+## Repository layout
 
-- `CodexSpendMonitor/` - исходный код WinUI 3 приложения
-- `Start-CodexSpendPopout.ps1` - удобный скрипт для публикации и запуска
-- `dist/` - сгенерированный результат публикации, исключён из Git
-- `dumps/` и `*.log` - локальная диагностика, исключены из Git
+- `CodexSpendMonitor/` - WinUI 3 application source
+- `Start-CodexSpendPopout.ps1` - convenience launcher for local publish + run
+- `dist/` - generated publish output, ignored by Git
+- `dumps/` and `*.log` - local diagnostics, ignored by Git
 
-## Как считается стоимость
+## How spend is estimated
 
-Приложение читает `.jsonl` файлы сессий и использует:
+The app reads session `.jsonl` files and combines:
 
 - `input_tokens`
 - `cached_input_tokens`
 - `output_tokens`
 - `reasoning_output_tokens`
 
-вместе с ценами из:
+with pricing returned by:
 
 - [OpenRouter Models API](https://openrouter.ai/api/v1/models)
 
-Если модель из сессии не удалось сопоставить с записью OpenRouter, чат всё равно отображается в интерфейсе, но цена для него помечается как неподтянутая.
+If a session model cannot be matched to an OpenRouter price entry, the chat is still shown in the UI but the price is marked as unmatched.
 
-## Что уже подготовлено для GitHub
+## GitHub-ready notes
 
-- Артефакты сборки и локальная диагностика исключены через `.gitignore`
-- Репозиторий безопасно загружать без `bin/`, `obj/`, `dist/`, `dumps/` и локальных логов
-- Секреты по умолчанию в проекте не хранятся; приложение читает локальные данные Codex из профиля текущего пользователя Windows
+- Build artifacts and local diagnostics are excluded through `.gitignore`
+- The repository is safe to upload without `bin/`, `obj/`, `dist/`, `dumps/`, or local log files
+- No secrets are stored in the project by default; the app reads local Codex session data from the current Windows user profile
