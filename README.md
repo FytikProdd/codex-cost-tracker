@@ -2,7 +2,7 @@
 
 [Русская версия](./README.ru.md)
 
-Compact WinUI 3 desktop app for Windows that watches local Codex session folders, matches conversations to OpenRouter pricing, and shows estimated spend per chat in near real time.
+Compact WinUI 3 desktop app for Windows that tracks Codex/Codex App spend per chat and shows estimated costs in near real time.
 
 ## What it does
 
