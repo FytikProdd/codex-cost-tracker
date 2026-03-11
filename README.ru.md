@@ -46,6 +46,12 @@ dotnet build .\CodexSpendMonitor\CodexSpendMonitor.csproj
 dotnet publish .\CodexSpendMonitor\CodexSpendMonitor.csproj -c Release -o .\dist\CodexSpendMonitor
 ```
 
+Для рабочей локальной папки `dist/` лучше использовать стартовый скрипт, потому что он дополнительно синхронизирует нужные сгенерированные WinUI-ресурсы в publish-вывод:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Start-CodexSpendPopout.ps1 -Build
+```
+
 ## Структура репозитория
 
 - `CodexSpendMonitor/` - исходный код WinUI 3 приложения

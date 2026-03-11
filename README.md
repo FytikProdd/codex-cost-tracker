@@ -46,6 +46,12 @@ Publish a self-contained executable:
 dotnet publish .\CodexSpendMonitor\CodexSpendMonitor.csproj -c Release -o .\dist\CodexSpendMonitor
 ```
 
+For a runnable local `dist/` folder, prefer the launcher script because it also syncs required WinUI generated resources into the publish output:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Start-CodexSpendPopout.ps1 -Build
+```
+
 ## Repository layout
 
 - `CodexSpendMonitor/` - WinUI 3 application source
