@@ -67,9 +67,3 @@ with pricing returned by:
 - [OpenRouter Models API](https://openrouter.ai/api/v1/models)
 
 If a session model cannot be matched to an OpenRouter price entry, the chat is still shown in the UI but the price is marked as unmatched.
-
-## GitHub-ready notes
-
-- Build artifacts and local diagnostics are excluded through `.gitignore`
-- The repository is safe to upload without `bin/`, `obj/`, `dist/`, `dumps/`, or local log files
-- No secrets are stored in the project by default; the app reads local Codex session data from the current Windows user profile
