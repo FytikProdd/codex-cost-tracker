@@ -1,8 +1,8 @@
-# Codex Spend Popout
+# Codex Cost Tracker
 
 [Русская версия](./README.ru.md)
 
-Compact WinUI 3 desktop app for Windows that tracks Codex/Codex App spend per chat and shows estimated costs in near real time.
+Compact WinUI 3 desktop app for Windows that tracks Codex/Codex App costs per chat and shows estimated usage costs in near real time.
 
 ## What it does
 
